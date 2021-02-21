@@ -2,13 +2,15 @@
 import pandas as pd
 
 # Import the CSV file into Python
-A_data = pd.read_csv("train.csv")
+A_data = pd.read_csv("../input/hr-ana/train.csv")
+A_data = A_data.dropna()
 
 # Directly assigning individual field columns different integer value #
 
 # gender
 A_data.gender[A_data.gender == 'm'] = 1 #male -> 1
 A_data.gender[A_data.gender == 'f'] = 2 #femal -> 2
+A_data["gender"] = A_data["gender"].astype('int64')
 
 # department
 A_data.department[A_data.department == 'Analytics'] = 1         #Analytics -> 1
@@ -20,6 +22,7 @@ A_data.department[A_data.department == 'Procurement'] = 6       #Procurement -> 
 A_data.department[A_data.department == 'R&D'] = 7               #R&D -> 7
 A_data.department[A_data.department == 'Sales & Marketing'] = 8 #Sales & Marketing -> 8
 A_data.department[A_data.department == 'Technology'] = 9        #Technology -> 9
+A_data["department"] = A_data["department"].astype('int64')
 
 # region
 A_data.region[A_data.region == 'region_1'] = 1   #region_1 -> 1
@@ -56,22 +59,22 @@ A_data.region[A_data.region == 'region_31'] = 31 #region_31 -> 31
 A_data.region[A_data.region == 'region_32'] = 32 #region_32 -> 32
 A_data.region[A_data.region == 'region_33'] = 33 #region_33 -> 33
 A_data.region[A_data.region == 'region_34'] = 34 #region_34 -> 34
+A_data["region"] = A_data["region"].astype('int64')
 
 # education
 A_data.education[A_data.education == "Bachelor's"] = 1       #Bachelor's -> 1
 A_data.education[A_data.education == "Below Secondary"] = 2  #Below Secondary -> 2
 A_data.education[A_data.education == "Master's & above"] = 3 #Master's & above -> 3
+A_data["education"] = A_data["education"].astype('int64')
 
 # recruitment_channel
 A_data.recruitment_channel[A_data.recruitment_channel == 'other'] = 1    #other -> 1
 A_data.recruitment_channel[A_data.recruitment_channel == 'sourcing'] = 2 #sourcing -> 2
 A_data.recruitment_channel[A_data.recruitment_channel == 'referred'] = 3 #referred -> 3
+A_data["recruitment_channel"] = A_data["recruitment_channel"].astype('int64')
 
 # drop unecessary employee ID for analysis
 A_data.drop(['employee_id'], axis = 1, inplace = True)
 
 #set cleaned data to new csv file
 A_data.to_csv('c_train.csv',index=False)
-
-
-
