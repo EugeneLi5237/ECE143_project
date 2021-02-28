@@ -197,7 +197,11 @@ class ClassificationModels:
         X_train, X_test, y_train, y_test = train_test_split(
             X, y, test_size=0.2, random_state=42)
 
-        y_pred = model.fit(X_train, y_train).predict(X_test)
+        try:
+            model.fit(X_train, y_train)
+            y_pred = model.cross_val_predict(X_test, cv=5)
+        except AttributeError: 
+            y_pred = model.fit(X_train, y_train).predict(X_test)
 
         if analysis:
             # {None, 'true', 'pred', 'all'}
@@ -208,3 +212,8 @@ class ClassificationModels:
             print('Recall: {}'.format(recall_score(y_test, y_pred)))
             print('Precision: {}'.format(precision_score(y_test, y_pred)))
             print('F1 Score: {}'.format(f1_score(y_test, y_pred)))
+            print('Coefficients: {}'.format(list(X.columns)))
+            try:
+                print('Values: {}'.format(model.coef_))
+            except AttributeError:
+                pass
