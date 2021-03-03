@@ -28,16 +28,21 @@ class ClassificationModels:
     Example:
     Best results achieved on HR dataset (https://www.kaggle.com/arashnic/hr-ana) 
     after cleaning with the following lines of code:
+        from model_class import ClassificationModels
         to_drop = ['department', 'gender']
         clf = ClassificationModels(C=1, gamma=0.5)
-        clf.classification("c_train.csv", clf.rbf_svm, to_drop, "is_promoted", True, True)
+        clf.classification("[path to training data]/c_train.csv", clf.rbf_svm, to_drop, "is_promoted", True, True)
 
     Results:
-        Confusion Matrix: [[6761 2217]
-                           [1839 6955]]
-        Recall: 0.7908801455537867
-        Precision: 0.7582860880941997
-        F1 Score: 0.7742402315484805
+        Statistics before SMOTE: Counter({False: 44428, True: 4232})
+        Statistics after SMOTE: Counter({False: 44428, True: 44428})
+        Confusion Matrix: [[6710 2268]
+                           [1756 7038]]
+        Recall: 0.8003183989083466
+        Precision: 0.7562862669245648
+        F1 Score: 0.7776795580110497
+        Coefficients: ['region', 'education', 'recruitment_channel', 'no_of_trainings', \
+                       'age', 'previous_year_rating', 'length_of_service', 'awards_won?', 'avg_training_score']
     """
 
 
