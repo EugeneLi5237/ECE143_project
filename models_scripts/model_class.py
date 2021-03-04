@@ -222,3 +222,5 @@ class ClassificationModels:
                 print('Values: {}'.format(model.coef_))
             except AttributeError:
                 pass
+
+        return model, X_test
