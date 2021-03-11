@@ -1,4 +1,6 @@
-# ECE143_project
+# HR Prediction Analysis for Promotions
+
+ECE143 WI21 Group 9
 
 ## Requirements:
 Use python 3.8+ <br /><br />
